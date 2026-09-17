@@ -1,6 +1,6 @@
 begin;
 
-select plan(24);
+select plan(26);
 
 select has_schema('public', 'public schema exists');
 select has_table('public', 'profiles', 'profiles table exists');
@@ -76,6 +76,25 @@ select ok(
     where n.nspname = 'public' and p.proname = 'complete_billiards_match'
   ),
   'public complete_billiards_match RPC exists'
+);
+select ok(
+  exists (
+    select 1 from pg_trigger
+    where tgrelid = 'public.match_events'::regclass
+      and tgname = 'match_events_broadcast_trigger'
+      and not tgisinternal
+  ),
+  'match event broadcasts are triggered after commit'
+);
+select ok(
+  exists (
+    select 1 from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'private'
+      and p.proname = 'broadcast_match_event'
+      and p.prosecdef
+  ),
+  'match event broadcaster is isolated as a security definer'
 );
 
 select * from finish();
