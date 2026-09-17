@@ -89,3 +89,37 @@ export async function recordBinaryResult(
 
   return data
 }
+
+export type Flip7RoundPlayerInput = {
+  cards: readonly { code: string }[]
+  participantId: string
+}
+
+export type FinalizeFlip7RoundRequest = {
+  clientEventId: string
+  expectedVersion: number
+  matchId: string
+  players: readonly Flip7RoundPlayerInput[]
+}
+
+export async function finalizeFlip7Round(
+  client: SupabaseClient<Database>,
+  request: FinalizeFlip7RoundRequest,
+): Promise<number> {
+  const args = {
+    p_client_event_id: request.clientEventId,
+    p_expected_version: request.expectedVersion,
+    p_match_id: request.matchId,
+    p_players: request.players.map((player) => ({
+      cards: player.cards.map((card) => ({ code: card.code })),
+      participant_id: player.participantId,
+    })),
+  } as unknown as Database['public']['Functions']['finalize_flip7_round']['Args']
+
+  const { data, error } = await client.rpc('finalize_flip7_round', args)
+  if (error) {
+    throw error
+  }
+
+  return data
+}

@@ -1342,6 +1342,15 @@ export type Database = {
         }
         Returns: string
       }
+      finalize_flip7_round: {
+        Args: {
+          p_client_event_id: string
+          p_expected_version: number
+          p_match_id: string
+          p_players: Json
+        }
+        Returns: number
+      }
       record_binary_result: {
         Args: {
           p_client_event_id: string
