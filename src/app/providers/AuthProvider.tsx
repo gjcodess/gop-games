@@ -13,6 +13,7 @@ type AuthContextValue = {
   refreshProfile: () => Promise<void>
   session: Session | null
   signIn: (email: string, password: string) => Promise<void>
+  signUp: (displayName: string, email: string, password: string) => Promise<{ requiresEmailConfirmation: boolean }>
   signOut: () => Promise<void>
   status: AuthStatus
   user: User | null
@@ -114,6 +115,28 @@ export function AuthProvider({ children }: PropsWithChildren) {
     }
   }, [])
 
+  const signUp = useCallback(async (displayName: string, email: string, password: string) => {
+    if (!supabase) {
+      throw new Error('Supabase is not configured for this environment.')
+    }
+
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          display_name: displayName,
+        },
+      },
+    })
+
+    if (signUpError) {
+      throw signUpError
+    }
+
+    return { requiresEmailConfirmation: !data.session }
+  }, [])
+
   const signOut = useCallback(async () => {
     if (!supabase) {
       return
@@ -143,10 +166,11 @@ export function AuthProvider({ children }: PropsWithChildren) {
     refreshProfile,
     session: session ?? null,
     signIn,
+    signUp,
     signOut,
     status,
     user: session?.user ?? null,
-  }), [error, profile, refreshProfile, session, signIn, signOut, status])
+  }), [error, profile, refreshProfile, session, signIn, signOut, signUp, status])
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

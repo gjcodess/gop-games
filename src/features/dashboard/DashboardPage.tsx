@@ -58,12 +58,16 @@ export function DashboardPage() {
         <section className={styles.hero} aria-labelledby="dashboard-heading">
           <p className={styles.eyebrow}>Your game night, connected</p>
           <h1 id="dashboard-heading">Ready when the table is.</h1>
-          <p>Authentication and profile persistence are now connected to Supabase. Match setup and realtime game rooms come next.</p>
+          <p>Choose a game, open a shared table, and record a result that everyone in your group can see.</p>
         </section>
 
         <Link className={styles.utilityLink} to="/app/utilities">
           <span><strong>Night tools</strong><br />Pick teams, spin the wheel, or settle a tie.</span>
           <span aria-hidden="true">↗</span>
+        </Link>
+        <Link className={styles.matchLink} to="/app/matches/new">
+          <span><strong>Start a live match</strong><br />Choose a game, gather the table, and record the result together.</span>
+          <span aria-hidden="true">＋</span>
         </Link>
         <Link className={styles.libraryLink} to="/app/library">
           <span><strong>Game library &amp; history</strong><br />Search rules, player records, and finished matches.</span>

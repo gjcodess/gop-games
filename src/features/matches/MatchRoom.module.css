@@ -1,0 +1,49 @@
+.page { background: var(--theme-canvas-wash), var(--color-canvas); min-height: 100vh; }
+.header,
+.main { margin: 0 auto; width: min(100% - 1.25rem, 64rem); }
+.header { align-items: center; border-bottom: 1px solid var(--color-line); display: flex; gap: 1rem; justify-content: space-between; padding: 1rem 0; }
+.brand { color: var(--color-ink); font-size: 0.78rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; }
+.brandMark,
+.eyebrow { color: var(--color-accent); }
+.headerActions { align-items: center; display: flex; gap: 0.45rem; }
+.signOut,
+.secondaryButton,
+.primaryButton,
+.modeButton,
+.modeActive { border: 1px solid var(--color-line-strong); border-radius: 999px; cursor: pointer; font: inherit; font-size: 0.78rem; font-weight: 800; min-height: 2.75rem; padding: 0.65rem 0.95rem; }
+.signOut,
+.secondaryButton,
+.modeButton { background: var(--color-control); color: var(--color-ink); }
+.primaryButton { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-accent-contrast); }
+.primaryButton:disabled { cursor: not-allowed; opacity: 0.5; }
+.main { display: grid; gap: 1.5rem; padding: clamp(2rem, 7vw, 5rem) 0 4rem; }
+.hero { border-bottom: 1px solid var(--color-line-strong); padding-bottom: 1.5rem; }
+.eyebrow { font-size: 0.7rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(3.2rem, 13vw, 7rem); letter-spacing: -0.09em; line-height: 0.82; margin-top: 0.8rem; max-width: 8ch; }
+.hero p:last-child { color: var(--color-muted); margin-top: 1rem; }
+.connection { border-radius: 999px; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.05em; padding: 0.42rem 0.6rem; text-transform: uppercase; }
+.connectionlive { background: color-mix(in srgb, var(--color-success) 18%, transparent); color: var(--color-success); }
+.connectiondegraded,
+.connectionrecovering { background: color-mix(in srgb, var(--color-danger) 15%, transparent); color: var(--color-danger); }
+.connectionconnecting { background: color-mix(in srgb, var(--color-accent) 18%, transparent); color: var(--color-accent); }
+.scoreboard { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); }
+.team { align-items: start; background: var(--color-panel); border: 1px solid var(--color-line); border-radius: var(--radius-panel); box-shadow: var(--shadow-soft); color: var(--color-ink); cursor: pointer; display: grid; gap: 0.35rem; min-height: 9rem; padding: 1.1rem; text-align: left; transition: border-color 160ms ease, transform 160ms ease, background-color 160ms ease; }
+.team:hover:not(:disabled) { border-color: var(--color-accent); transform: translateY(-0.12rem); }
+.team:disabled { cursor: default; }
+.teamSelected { background: color-mix(in srgb, var(--color-accent) 15%, var(--color-panel)); border-color: var(--color-accent); }
+.teamNumber { color: var(--color-muted); font-size: 0.7rem; font-weight: 900; letter-spacing: 0.12em; }
+.team strong { font-size: clamp(1.25rem, 4vw, 2rem); letter-spacing: -0.04em; }
+.team span:last-child { color: var(--color-muted); font-size: 0.82rem; }
+.resultPanel,
+.completePanel { background: var(--color-panel); border: 1px solid var(--color-line); border-radius: var(--radius-panel); display: grid; gap: 1rem; padding: clamp(1.1rem, 4vw, 2rem); }
+.resultPanel h2,
+.completePanel h2 { font-size: clamp(1.8rem, 6vw, 3rem); letter-spacing: -0.06em; line-height: 0.9; margin-top: 0.35rem; }
+.modeRow { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.modeActive { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-accent-contrast); }
+.helper,
+.status { color: var(--color-muted); font-size: 0.85rem; }
+.error { background: color-mix(in srgb, var(--color-danger) 12%, transparent); border-left: 0.25rem solid var(--color-danger); color: var(--color-ink); padding: 0.8rem 1rem; }
+.backLink { color: var(--color-muted); font-size: 0.85rem; justify-self: start; }
+.secondaryButton { justify-self: start; }
+@media (prefers-reduced-motion: reduce) { .team { transition: none; } }
+@media (max-width: 40rem) { .header { align-items: flex-start; } .headerActions { gap: 0.2rem; } .connection { display: none; } }

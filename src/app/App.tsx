@@ -11,11 +11,14 @@ import styles from './App.module.css'
 const DashboardPage = lazy(async () => import('../features/dashboard/DashboardPage').then((module) => ({ default: module.DashboardPage })))
 const LibraryPage = lazy(async () => import('../features/library/LibraryPage').then((module) => ({ default: module.LibraryPage })))
 const LoginPage = lazy(async () => import('../features/auth/LoginPage').then((module) => ({ default: module.LoginPage })))
+const MatchRoomPage = lazy(async () => import('../features/matches/MatchRoomPage').then((module) => ({ default: module.MatchRoomPage })))
+const MatchSetupPage = lazy(async () => import('../features/matches/MatchSetupPage').then((module) => ({ default: module.MatchSetupPage })))
 const UtilitiesPage = lazy(async () => import('../features/utilities/UtilitiesPage').then((module) => ({ default: module.UtilitiesPage })))
 
 const routeTitles: Record<string, string> = {
   '/': 'GOP Games',
   '/app': 'Game room · GOP Games',
+  '/app/matches/new': 'New match · GOP Games',
   '/app/library': 'Library · GOP Games',
   '/app/utilities': 'Night tools · GOP Games',
   '/login': 'Sign in · GOP Games',
@@ -96,6 +99,8 @@ export function App() {
             <Route element={<LandingPage />} path="/" />
             <Route element={<LoginPage />} path="/login" />
             <Route element={<RequireAuth><DashboardPage /></RequireAuth>} path="/app" />
+            <Route element={<RequireAuth><MatchSetupPage /></RequireAuth>} path="/app/matches/new" />
+            <Route element={<RequireAuth><MatchRoomPage /></RequireAuth>} path="/app/matches/:matchId" />
             <Route element={<RequireAuth><UtilitiesPage /></RequireAuth>} path="/app/utilities" />
             <Route element={<RequireAuth><LibraryPage /></RequireAuth>} path="/app/library" />
             <Route element={<Navigate replace to="/" />} path="*" />

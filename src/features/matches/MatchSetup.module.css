@@ -1,0 +1,107 @@
+.page,
+.main {
+  min-height: 100vh;
+}
+
+.page { background: var(--theme-canvas-wash), var(--color-canvas); }
+
+.header,
+.main {
+  margin: 0 auto;
+  width: min(100% - 1.25rem, 52rem);
+}
+
+.header {
+  align-items: center;
+  border-bottom: 1px solid var(--color-line);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.brand {
+  color: var(--color-ink);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brandMark,
+.eyebrow { color: var(--color-accent); }
+
+.headerActions { align-items: center; display: flex; gap: 0.45rem; }
+
+.signOut,
+.secondaryButton,
+.primaryButton {
+  align-items: center;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.95rem;
+  text-decoration: none;
+}
+
+.signOut,
+.secondaryButton { background: var(--color-control); color: var(--color-ink); }
+.primaryButton { border-color: var(--color-accent); background: var(--color-accent); color: var(--color-accent-contrast); }
+.primaryButton:disabled { cursor: not-allowed; opacity: 0.5; }
+
+.main { display: grid; gap: 1.5rem; padding: clamp(2rem, 7vw, 5rem) 0 4rem; }
+
+.hero { border-bottom: 1px solid var(--color-line-strong); padding-bottom: 1.5rem; }
+.eyebrow { font-size: 0.7rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+.hero h1 { font-size: clamp(3rem, 12vw, 6rem); letter-spacing: -0.08em; line-height: 0.85; margin-top: 0.8rem; max-width: 8ch; }
+.hero p:last-child { color: var(--color-muted); margin-top: 1rem; max-width: 38rem; }
+
+.formPanel,
+.emptyState {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-soft);
+  display: grid;
+  gap: 1.15rem;
+  padding: clamp(1.1rem, 4vw, 2rem);
+}
+
+.field { color: var(--color-ink); display: grid; font-size: 0.85rem; font-weight: 800; gap: 0.4rem; }
+.field select,
+.field textarea {
+  background: var(--color-control);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-control);
+  color: var(--color-ink);
+  font: inherit;
+  padding: 0.75rem 0.8rem;
+}
+.field textarea { resize: vertical; }
+.optional { color: var(--color-muted); font-size: 0.75rem; font-weight: 500; }
+
+.playerFieldset { border: 0; margin: 0; padding: 0; }
+.playerFieldset legend { color: var(--color-ink); font-size: 0.85rem; font-weight: 800; margin-bottom: 0.5rem; }
+.playerFieldset legend span { color: var(--color-muted); font-size: 0.75rem; font-weight: 500; margin-left: 0.4rem; }
+.playerList { display: grid; gap: 0.5rem; }
+.playerOption { align-items: center; background: var(--color-control); border: 1px solid var(--color-line); border-radius: var(--radius-control); cursor: pointer; display: flex; gap: 0.65rem; min-height: 3rem; padding: 0.65rem 0.75rem; }
+.playerOption input { accent-color: var(--color-accent); }
+.playerOption small { color: var(--color-muted); margin-left: auto; }
+.playerSelected { border-color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 10%, var(--color-control)); }
+.helper,
+.status { color: var(--color-muted); font-size: 0.85rem; }
+.error { border-left: 0.25rem solid var(--color-danger); color: var(--color-ink); padding: 0.8rem 1rem; background: color-mix(in srgb, var(--color-danger) 12%, transparent); }
+.emptyState h2 { font-size: clamp(1.8rem, 6vw, 3rem); letter-spacing: -0.06em; line-height: 0.95; }
+.emptyState p:not(.eyebrow) { color: var(--color-muted); max-width: 34rem; }
+.secondaryButton { justify-self: start; }
+
+@media (max-width: 40rem) {
+  .header { align-items: flex-start; }
+  .headerActions { gap: 0.25rem; }
+}

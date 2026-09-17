@@ -105,7 +105,8 @@
 }
 
 .error,
-.notice {
+.notice,
+.success {
   margin: 0 0 1rem;
   border-left: 0.25rem solid var(--color-accent);
   padding: 0.75rem 0.9rem;
@@ -117,6 +118,33 @@
 .error {
   border-left-color: var(--color-danger);
   background: color-mix(in srgb, var(--color-danger) 13%, transparent);
+}
+
+.success {
+  border-left-color: var(--color-success);
+  background: color-mix(in srgb, var(--color-success) 13%, transparent);
+}
+
+.modePrompt {
+  margin: 1.25rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.modeButton {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--color-accent);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.modeButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 .footerLink {

@@ -2,7 +2,7 @@
 
 ## Keys and sessions
 
-The browser uses only `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`. Vercel Functions use `SUPABASE_SECRET_KEY` and never expose it. Auth is invite-only; no application table stores passwords or password hashes.
+The browser uses only `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`. Vercel Functions use `SUPABASE_SECRET_KEY` and never expose it. Email/password account creation is handled by Supabase Auth; no application table stores passwords or password hashes. Creating an account does not grant group access—database membership and RLS remain the authorization boundary.
 
 ## Authorization
 
@@ -19,4 +19,3 @@ Avatars live in a private bucket. Users may write only their own profile path; r
 ## Auditing and destructive operations
 
 Match corrections append reversal/replacement events. Completed matches are archived rather than silently deleted. Logs exclude tokens, secrets, passwords, and private payloads.
-

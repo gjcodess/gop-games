@@ -41,3 +41,12 @@ test('password visibility can be toggled without changing the field value', asyn
   await page.getByRole('button', { name: 'Hide' }).click()
   await expect(password).toHaveAttribute('type', 'password')
 })
+
+test('players can switch from sign in to account creation', async ({ page }) => {
+  await page.goto('/login')
+
+  await page.getByRole('button', { name: /create an account/i }).click()
+  await expect(page.getByRole('heading', { name: /join the table/i })).toBeVisible()
+  await expect(page.getByLabel('Display name')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Create account' })).toBeVisible()
+})
