@@ -1332,6 +1332,30 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      apply_billiards_event: {
+        Args: {
+          p_ball_number?: number
+          p_client_event_id: string
+          p_event_type: string
+          p_expected_version: number
+          p_match_id: string
+          p_participant_id?: string
+          p_payload?: Json
+          p_team_id?: string
+        }
+        Returns: number
+      }
+      complete_billiards_match: {
+        Args: {
+          p_client_event_id: string
+          p_expected_version: number
+          p_match_id: string
+          p_notes?: string
+          p_result: string
+          p_winner_team_ids?: string[]
+        }
+        Returns: number
+      }
       create_match: {
         Args: {
           p_game_id: string
@@ -1348,6 +1372,17 @@ export type Database = {
           p_expected_version: number
           p_match_id: string
           p_players: Json
+        }
+        Returns: number
+      }
+      initialize_billiards_match: {
+        Args: {
+          p_active_participant_id?: string
+          p_active_team_id?: string
+          p_client_event_id: string
+          p_expected_version: number
+          p_match_id: string
+          p_mode: string
         }
         Returns: number
       }

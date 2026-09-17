@@ -1,6 +1,6 @@
 begin;
 
-select plan(21);
+select plan(24);
 
 select has_schema('public', 'public schema exists');
 select has_table('public', 'profiles', 'profiles table exists');
@@ -52,6 +52,30 @@ select ok(
     where n.nspname = 'public' and p.proname = 'finalize_flip7_round'
   ),
   'public finalize_flip7_round RPC exists'
+);
+select ok(
+  exists (
+    select 1 from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'public' and p.proname = 'initialize_billiards_match'
+  ),
+  'public initialize_billiards_match RPC exists'
+);
+select ok(
+  exists (
+    select 1 from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'public' and p.proname = 'apply_billiards_event'
+  ),
+  'public apply_billiards_event RPC exists'
+);
+select ok(
+  exists (
+    select 1 from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'public' and p.proname = 'complete_billiards_match'
+  ),
+  'public complete_billiards_match RPC exists'
 );
 
 select * from finish();
