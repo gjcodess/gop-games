@@ -1,12 +1,41 @@
-import { Link, Navigate, Route, Routes } from 'react-router-dom'
+import { lazy, Suspense, useEffect } from 'react'
+import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { ThemeToggle } from '../components/ui/ThemeToggle'
-import { DashboardPage } from '../features/dashboard/DashboardPage'
-import { LoginPage } from '../features/auth/LoginPage'
-import { UtilitiesPage } from '../features/utilities/UtilitiesPage'
-import { LibraryPage } from '../features/library/LibraryPage'
+import { AppErrorBoundary } from '../components/ui/AppErrorBoundary'
+import { ScrollProgress } from '../components/ui/ScrollProgress'
+import { ScrollToTop } from '../components/ui/ScrollToTop'
 import { useAuth } from './providers/AuthProvider'
 import { RequireAuth } from './routes/RequireAuth'
 import styles from './App.module.css'
+
+const DashboardPage = lazy(async () => import('../features/dashboard/DashboardPage').then((module) => ({ default: module.DashboardPage })))
+const LibraryPage = lazy(async () => import('../features/library/LibraryPage').then((module) => ({ default: module.LibraryPage })))
+const LoginPage = lazy(async () => import('../features/auth/LoginPage').then((module) => ({ default: module.LoginPage })))
+const UtilitiesPage = lazy(async () => import('../features/utilities/UtilitiesPage').then((module) => ({ default: module.UtilitiesPage })))
+
+const routeTitles: Record<string, string> = {
+  '/': 'GOP Games',
+  '/app': 'Game room · GOP Games',
+  '/app/library': 'Library · GOP Games',
+  '/app/utilities': 'Night tools · GOP Games',
+  '/login': 'Sign in · GOP Games',
+}
+
+function RouteAccessibility() {
+  const location = useLocation()
+  const title = routeTitles[location.pathname] ?? 'GOP Games'
+
+  useEffect(() => {
+    document.title = title
+    if (window.scrollY > 0) window.scrollTo({ behavior: 'auto', top: 0 })
+  }, [location.pathname, title])
+
+  return <span aria-live="polite" className="sr-only">{title} loaded</span>
+}
+
+function RouteLoading() {
+  return <main aria-busy="true" className={styles.routeLoading} id="main-content"><p>Opening the game-night room…</p></main>
+}
 
 function LandingPage() {
   const { isConfigured, status } = useAuth()
@@ -58,13 +87,22 @@ function LandingPage() {
 
 export function App() {
   return (
-    <Routes>
-      <Route element={<LandingPage />} path="/" />
-      <Route element={<LoginPage />} path="/login" />
-      <Route element={<RequireAuth><DashboardPage /></RequireAuth>} path="/app" />
-      <Route element={<RequireAuth><UtilitiesPage /></RequireAuth>} path="/app/utilities" />
-      <Route element={<RequireAuth><LibraryPage /></RequireAuth>} path="/app/library" />
-      <Route element={<Navigate replace to="/" />} path="*" />
-    </Routes>
+    <>
+      <ScrollProgress />
+      <RouteAccessibility />
+      <AppErrorBoundary>
+        <Suspense fallback={<RouteLoading />}>
+          <Routes>
+            <Route element={<LandingPage />} path="/" />
+            <Route element={<LoginPage />} path="/login" />
+            <Route element={<RequireAuth><DashboardPage /></RequireAuth>} path="/app" />
+            <Route element={<RequireAuth><UtilitiesPage /></RequireAuth>} path="/app/utilities" />
+            <Route element={<RequireAuth><LibraryPage /></RequireAuth>} path="/app/library" />
+            <Route element={<Navigate replace to="/" />} path="*" />
+          </Routes>
+        </Suspense>
+      </AppErrorBoundary>
+      <ScrollToTop />
+    </>
   )
 }

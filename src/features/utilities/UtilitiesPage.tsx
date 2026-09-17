@@ -39,6 +39,7 @@ export function UtilitiesPage() {
   const [profiles, setProfiles] = useState<PickerProfile[]>([])
   const [isLoadingProfiles, setIsLoadingProfiles] = useState(true)
   const [profileError, setProfileError] = useState<string | null>(null)
+  const [profileLoadAttempt, setProfileLoadAttempt] = useState(0)
   const [selectedProfileIds, setSelectedProfileIds] = useState<string[]>([])
   const [teamCount, setTeamCount] = useState(2)
   const [teams, setTeams] = useState<PickerProfile[][]>([])
@@ -91,7 +92,7 @@ export function UtilitiesPage() {
     return () => {
       active = false
     }
-  }, [fallbackProfile])
+  }, [fallbackProfile, profileLoadAttempt])
 
   useEffect(() => () => {
     if (spinTimer.current) window.clearTimeout(spinTimer.current)
@@ -180,7 +181,7 @@ export function UtilitiesPage() {
           {isLoadingProfiles ? (
             <p className={styles.status} aria-live="polite">Loading player profiles…</p>
           ) : profileError ? (
-            <p className={styles.error} role="alert">{profileError}</p>
+            <div className={styles.error} role="alert"><p>{profileError}</p><button className={styles.retryButton} onClick={() => { setProfileError(null); setIsLoadingProfiles(true); setProfileLoadAttempt((attempt) => attempt + 1) }} type="button">Try again</button></div>
           ) : profiles.length > 0 ? (
             <div className={styles.profileList}>
               {profiles.map((item) => <ProfileChip key={item.id} onToggle={() => toggleProfile(item.id)} profile={item} selected={selectedProfileIds.includes(item.id)} />)}

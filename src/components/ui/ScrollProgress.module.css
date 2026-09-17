@@ -1,0 +1,17 @@
+.track {
+  background: transparent;
+  height: 0.2rem;
+  inset: 0 0 auto;
+  pointer-events: none;
+  position: fixed;
+  z-index: 90;
+}
+
+.progress {
+  background: var(--color-accent);
+  display: block;
+  height: 100%;
+  transform: scaleX(var(--progress));
+  transform-origin: left;
+  width: 100%;
+}

@@ -47,6 +47,7 @@ export function LibraryPage() {
   const [data, setData] = useState<LibraryData>({ history: [], rules: [] })
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [loadAttempt, setLoadAttempt] = useState(0)
   const [query, setQuery] = useState('')
   const [selectedRuleKey, setSelectedRuleKey] = useState('')
 
@@ -81,7 +82,7 @@ export function LibraryPage() {
     return () => {
       active = false
     }
-  }, [])
+  }, [loadAttempt])
 
   const normalizedQuery = query.trim().toLowerCase()
   const filteredRules = useMemo(
@@ -144,7 +145,7 @@ export function LibraryPage() {
         {isLoading ? (
           <p aria-busy="true" className={styles.status}>Loading rules and match history…</p>
         ) : error ? (
-          <p className={styles.error} role="alert">{error}</p>
+          <div className={styles.error} role="alert"><p>{error}</p><button className={styles.retryButton} onClick={() => { setError(null); setIsLoading(true); setLoadAttempt((attempt) => attempt + 1) }} type="button">Try again</button></div>
         ) : !supabase ? (
           <p className={styles.status}>Supabase is not configured in this environment.</p>
         ) : (

@@ -22,6 +22,7 @@
 .searchSummary { margin-top: 0.6rem; }
 .status { color: var(--color-muted); font-size: 0.9rem; padding: 1.25rem 0; }
 .error { background: color-mix(in srgb, var(--color-danger) 12%, transparent); border-left: 0.22rem solid var(--color-danger); padding: 0.7rem 0.85rem; }
+.retryButton { background: transparent; border: 1px solid var(--color-line-strong); border-radius: 999px; color: var(--color-ink); cursor: pointer; font-size: 0.78rem; font-weight: 800; margin-top: 0.7rem; min-height: 2.6rem; padding: 0.55rem 0.85rem; }
 .libraryLayout { display: grid; gap: 1rem; grid-template-columns: minmax(11rem, 0.34fr) minmax(0, 1fr); }
 .gameNav { align-self: start; padding: 1rem; }
 .navHeading { padding: 0.35rem 0.5rem 0.8rem; }
