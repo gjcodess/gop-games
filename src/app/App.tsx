@@ -3,6 +3,7 @@ import { ThemeToggle } from '../components/ui/ThemeToggle'
 import { DashboardPage } from '../features/dashboard/DashboardPage'
 import { LoginPage } from '../features/auth/LoginPage'
 import { UtilitiesPage } from '../features/utilities/UtilitiesPage'
+import { LibraryPage } from '../features/library/LibraryPage'
 import { useAuth } from './providers/AuthProvider'
 import { RequireAuth } from './routes/RequireAuth'
 import styles from './App.module.css'
@@ -62,6 +63,7 @@ export function App() {
       <Route element={<LoginPage />} path="/login" />
       <Route element={<RequireAuth><DashboardPage /></RequireAuth>} path="/app" />
       <Route element={<RequireAuth><UtilitiesPage /></RequireAuth>} path="/app/utilities" />
+      <Route element={<RequireAuth><LibraryPage /></RequireAuth>} path="/app/library" />
       <Route element={<Navigate replace to="/" />} path="*" />
     </Routes>
   )

@@ -65,6 +65,10 @@ export function DashboardPage() {
           <span><strong>Night tools</strong><br />Pick teams, spin the wheel, or settle a tie.</span>
           <span aria-hidden="true">↗</span>
         </Link>
+        <Link className={styles.libraryLink} to="/app/library">
+          <span><strong>Game library &amp; history</strong><br />Search rules, player records, and finished matches.</span>
+          <span aria-hidden="true">→</span>
+        </Link>
 
         <div className={styles.controlRow}>
           <section className={styles.profilePanel} aria-labelledby="profile-heading">
