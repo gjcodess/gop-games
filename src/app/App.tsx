@@ -2,6 +2,7 @@ import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import { ThemeToggle } from '../components/ui/ThemeToggle'
 import { DashboardPage } from '../features/dashboard/DashboardPage'
 import { LoginPage } from '../features/auth/LoginPage'
+import { UtilitiesPage } from '../features/utilities/UtilitiesPage'
 import { useAuth } from './providers/AuthProvider'
 import { RequireAuth } from './routes/RequireAuth'
 import styles from './App.module.css'
@@ -60,6 +61,7 @@ export function App() {
       <Route element={<LandingPage />} path="/" />
       <Route element={<LoginPage />} path="/login" />
       <Route element={<RequireAuth><DashboardPage /></RequireAuth>} path="/app" />
+      <Route element={<RequireAuth><UtilitiesPage /></RequireAuth>} path="/app/utilities" />
       <Route element={<Navigate replace to="/" />} path="*" />
     </Routes>
   )

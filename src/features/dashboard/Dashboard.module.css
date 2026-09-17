@@ -96,6 +96,28 @@
   max-width: 38rem;
 }
 
+.utilityLink {
+  align-items: center;
+  background: var(--color-accent);
+  border-radius: var(--radius-panel);
+  color: var(--color-accent-contrast);
+  display: flex;
+  font-size: 0.9rem;
+  justify-content: space-between;
+  min-height: 4.5rem;
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+.utilityLink:hover {
+  filter: brightness(1.08);
+  transform: translateY(-0.1rem);
+}
+
+.utilityLink strong { font-size: 1rem; }
+.utilityLink > span:last-child { font-size: 1.5rem; }
+
 .controlRow {
   align-items: end;
   display: grid;
@@ -182,5 +204,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .signOut,
-  .saveButton { transition: none; }
+  .saveButton,
+  .utilityLink { transition: none; }
 }
