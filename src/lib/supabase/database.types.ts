@@ -1342,6 +1342,23 @@ export type Database = {
         }
         Returns: string
       }
+      record_binary_result: {
+        Args: {
+          p_client_event_id: string
+          p_expected_version: number
+          p_match_id: string
+          p_results: Json
+        }
+        Returns: number
+      }
+      start_match: {
+        Args: {
+          p_client_event_id: string
+          p_expected_version: number
+          p_match_id: string
+        }
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never

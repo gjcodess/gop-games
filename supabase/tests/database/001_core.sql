@@ -1,6 +1,6 @@
 begin;
 
-select plan(18);
+select plan(20);
 
 select has_schema('public', 'public schema exists');
 select has_table('public', 'profiles', 'profiles table exists');
@@ -28,6 +28,22 @@ select ok(
       and not tgisinternal
   ),
   'new Auth users receive a profile'
+);
+select ok(
+  exists (
+    select 1 from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'public' and p.proname = 'start_match'
+  ),
+  'public start_match RPC exists'
+);
+select ok(
+  exists (
+    select 1 from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'public' and p.proname = 'record_binary_result'
+  ),
+  'public record_binary_result RPC exists'
 );
 
 select * from finish();
