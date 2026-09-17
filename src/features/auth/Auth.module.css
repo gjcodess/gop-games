@@ -1,0 +1,127 @@
+.page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 1.25rem;
+  background: radial-gradient(circle at 15% 10%, rgba(232, 179, 91, 0.12), transparent 35%), var(--color-canvas);
+}
+
+.panel {
+  width: min(100%, 28rem);
+  padding: clamp(1.5rem, 6vw, 2.75rem);
+  border: 1px solid var(--color-line);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-lifted);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0.7rem 0 0.6rem;
+  font-size: clamp(2.4rem, 12vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.description {
+  margin: 0 0 1.75rem;
+  color: var(--color-muted);
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--color-ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 0.7rem;
+  padding: 0.85rem 0.9rem;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.field input:focus-visible {
+  outline: 0.2rem solid color-mix(in srgb, var(--color-accent) 65%, transparent);
+  outline-offset: 0.1rem;
+}
+
+.passwordRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: end;
+}
+
+.passwordRow .field {
+  flex: 1;
+}
+
+.visibilityButton,
+.secondaryButton,
+.primaryButton {
+  min-height: 2.75rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 0.7rem;
+  padding: 0.7rem 0.9rem;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.visibilityButton,
+.secondaryButton {
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.primaryButton {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #151719;
+}
+
+.primaryButton:disabled,
+.secondaryButton:disabled,
+.visibilityButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.error,
+.notice {
+  margin: 0 0 1rem;
+  border-left: 0.25rem solid var(--color-accent);
+  padding: 0.75rem 0.9rem;
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  color: var(--color-ink);
+  font-size: 0.9rem;
+}
+
+.error {
+  border-left-color: #e47c6f;
+  background: color-mix(in srgb, #e47c6f 13%, transparent);
+}
+
+.footerLink {
+  display: inline-block;
+  margin-top: 1.25rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}

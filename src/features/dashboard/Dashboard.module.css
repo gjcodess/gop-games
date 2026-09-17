@@ -1,0 +1,141 @@
+.page {
+  min-height: 100vh;
+  background: var(--color-canvas);
+}
+
+.header,
+.main {
+  width: min(100% - 2.5rem, 72rem);
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.brand {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.signOut {
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  padding: 0.6rem 0.8rem;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.main {
+  display: grid;
+  gap: 1rem;
+  padding: 3rem 0;
+}
+
+.hero,
+.profilePanel {
+  border: 1px solid var(--color-line);
+  background: var(--color-panel);
+  box-shadow: var(--shadow-lifted);
+}
+
+.hero {
+  padding: clamp(1.5rem, 6vw, 3.5rem);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 12ch;
+  margin: 0.65rem 0 1rem;
+  font-size: clamp(2.6rem, 10vw, 5.5rem);
+  line-height: 0.93;
+  letter-spacing: -0.06em;
+}
+
+.hero p:last-child,
+.profilePanel p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.profilePanel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.profilePanel h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.profileForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.profileForm label {
+  display: grid;
+  flex: 1 1 14rem;
+  gap: 0.35rem;
+  color: var(--color-ink);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.profileForm input {
+  border: 1px solid var(--color-line-strong);
+  border-radius: 0.65rem;
+  padding: 0.75rem;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.profileForm button {
+  min-height: 2.7rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 0.65rem;
+  padding: 0.7rem 0.9rem;
+  background: var(--color-accent);
+  color: #151719;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.profileForm button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.message {
+  margin: 0;
+  color: var(--color-accent) !important;
+  font-size: 0.9rem;
+}

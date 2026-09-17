@@ -28,7 +28,9 @@ npm run db:reset
 npm run db:test
 npm run db:types
 # For the linked Supabase Cloud project:
+npm run db:push
+npm run db:seed:cloud
 npm run db:types:cloud
 ```
 
-`db:reset` replays every migration and seed file. `db:test` runs the pgTAP database checks, and the type commands write generated TypeScript types to `src/lib/supabase/database.types.ts` from either the local or linked `public` schema. See [AGENTS.md](./AGENTS.md) for project rules and [docs/architecture](./docs/architecture) for the approved architecture.
+`db:reset` replays every migration and seed file locally. `db:push` applies reviewed migrations to the linked cloud project, while `db:seed:cloud` explicitly loads the development catalog fixtures. `db:test` runs the pgTAP database checks, and the type commands write generated TypeScript types to `src/lib/supabase/database.types.ts` from either the local or linked `public` schema. See [AGENTS.md](./AGENTS.md) for project rules and [docs/architecture](./docs/architecture) for the approved architecture.

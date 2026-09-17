@@ -1,11 +1,21 @@
+import { Link, Navigate, Route, Routes } from 'react-router-dom'
+import { DashboardPage } from '../features/dashboard/DashboardPage'
+import { LoginPage } from '../features/auth/LoginPage'
+import { useAuth } from './providers/AuthProvider'
+import { RequireAuth } from './routes/RequireAuth'
 import styles from './App.module.css'
 
-export function App() {
+function LandingPage() {
+  const { isConfigured, status } = useAuth()
+  const destination = status === 'authenticated' ? '/app' : '/login'
+
   return (
     <div className={styles.appShell}>
       <header className={styles.header}>
         <p className={styles.eyebrow}>GOP Games</p>
-        <span className={styles.phaseBadge}>Phase 2 foundation</span>
+        <Link className={styles.phaseBadge} to={destination}>
+          {status === 'authenticated' ? 'Open game room' : 'Sign in'}
+        </Link>
       </header>
 
       <main className={styles.main} id="main-content">
@@ -14,7 +24,7 @@ export function App() {
             <p className={styles.kicker}>Game night, synchronized</p>
             <h1 id="welcome-heading">Make every match feel alive.</h1>
             <p className={styles.description}>
-              The React foundation is ready. Match setup, realtime scoring, rules, and game-specific experiences will arrive in the next implementation phases.
+              Keep every match, score, and game-night ritual connected. Sign in to unlock your player profile and shared game room.
             </p>
           </div>
           <div className={styles.signal} aria-hidden="true">
@@ -27,11 +37,26 @@ export function App() {
         <section className={styles.statusPanel} aria-labelledby="foundation-heading">
           <div>
             <p className={styles.sectionLabel}>Foundation status</p>
-            <h2 id="foundation-heading">Ready for Supabase integration</h2>
+            <h2 id="foundation-heading">{isConfigured ? 'Authentication is connected' : 'Ready for Supabase integration'}</h2>
           </div>
-          <p>Authentication, groups, match data, and realtime subscriptions are intentionally reserved for their dedicated phases.</p>
+          <p>
+            {isConfigured
+              ? 'Your cloud project is configured. Sign in to continue to your profile.'
+              : 'Authentication, groups, match data, and realtime subscriptions are intentionally reserved for their dedicated phases.'}
+          </p>
         </section>
       </main>
     </div>
+  )
+}
+
+export function App() {
+  return (
+    <Routes>
+      <Route element={<LandingPage />} path="/" />
+      <Route element={<LoginPage />} path="/login" />
+      <Route element={<RequireAuth><DashboardPage /></RequireAuth>} path="/app" />
+      <Route element={<Navigate replace to="/" />} path="*" />
+    </Routes>
   )
 }
