@@ -1,6 +1,6 @@
 begin;
 
-select plan(26);
+select plan(36);
 
 select has_schema('public', 'public schema exists');
 select has_table('public', 'profiles', 'profiles table exists');
@@ -95,6 +95,79 @@ select ok(
       and p.prosecdef
   ),
   'match event broadcaster is isolated as a security definer'
+);
+select ok(
+  (select relrowsecurity from pg_class where oid = 'public.profiles'::regclass),
+  'profiles have RLS enabled'
+);
+select ok(
+  (select relrowsecurity from pg_class where oid = 'public.match_participants'::regclass),
+  'match participants have RLS enabled'
+);
+select ok(
+  exists (
+    select 1
+    from pg_policies
+    where schemaname = 'public'
+      and tablename = 'matches'
+      and policyname = 'matches_select_member'
+  ),
+  'match reads require group membership'
+);
+select ok(
+  exists (
+    select 1
+    from pg_policies
+    where schemaname = 'realtime'
+      and tablename = 'messages'
+      and policyname = 'realtime_group_members_receive_broadcast'
+  ),
+  'private realtime broadcasts require group membership'
+);
+select ok(
+  not has_function_privilege('anon', 'public.start_match(uuid,bigint,uuid)', 'execute'),
+  'anonymous users cannot execute match mutations'
+);
+select ok(
+  has_function_privilege('authenticated', 'public.start_match(uuid,bigint,uuid)', 'execute'),
+  'authenticated users can execute the public match RPC wrapper'
+);
+select ok(
+  not has_function_privilege('anon', 'private.current_profile_id()', 'execute'),
+  'anonymous users cannot execute private authorization helpers'
+);
+select ok(
+  exists (
+    select 1
+    from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'private'
+      and p.proname = 'handle_new_auth_user'
+      and p.prosecdef
+      and p.proconfig = array['search_path=""']::text[]
+  ),
+  'Auth profile trigger is isolated as a security definer with an empty search path'
+);
+select ok(
+  not exists (
+    select 1
+    from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname = 'private'
+      and p.prosecdef
+      and p.proconfig is distinct from array['search_path=""']::text[]
+  ),
+  'all private security-definer functions pin an empty search path'
+);
+select ok(
+  exists (
+    select 1
+    from pg_policies
+    where schemaname = 'storage'
+      and tablename = 'objects'
+      and policyname = 'avatars_select_shared_group'
+  ),
+  'avatar reads are limited to shared-group profiles'
 );
 
 select * from finish();
