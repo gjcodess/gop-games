@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { PropsWithChildren } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './AuthProvider'
+import { ThemeProvider } from '../../themes/ThemeProvider'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,7 +17,9 @@ export function AppProviders({ children }: PropsWithChildren) {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <AuthProvider>{children}</AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ThemeProvider>
       </BrowserRouter>
     </QueryClientProvider>
   )

@@ -1,4 +1,5 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom'
+import { ThemeToggle } from '../components/ui/ThemeToggle'
 import { DashboardPage } from '../features/dashboard/DashboardPage'
 import { LoginPage } from '../features/auth/LoginPage'
 import { useAuth } from './providers/AuthProvider'
@@ -12,10 +13,13 @@ function LandingPage() {
   return (
     <div className={styles.appShell}>
       <header className={styles.header}>
-        <p className={styles.eyebrow}>GOP Games</p>
-        <Link className={styles.phaseBadge} to={destination}>
-          {status === 'authenticated' ? 'Open game room' : 'Sign in'}
-        </Link>
+        <p className={styles.eyebrow}>GOP Games <span aria-hidden="true">/</span> Game night, connected</p>
+        <div className={styles.headerActions}>
+          <ThemeToggle />
+          <Link className={styles.phaseBadge} to={destination}>
+            {status === 'authenticated' ? 'Open game room' : 'Sign in'}
+          </Link>
+        </div>
       </header>
 
       <main className={styles.main} id="main-content">

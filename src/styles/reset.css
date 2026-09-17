@@ -6,7 +6,7 @@
 
 html {
   min-width: 320px;
-  background: #101416;
+  background: var(--color-canvas, #101416);
 }
 
 body,

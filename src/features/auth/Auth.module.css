@@ -94,7 +94,7 @@
 .primaryButton {
   border-color: var(--color-accent);
   background: var(--color-accent);
-  color: #151719;
+  color: var(--color-accent-contrast);
 }
 
 .primaryButton:disabled,
@@ -115,8 +115,8 @@
 }
 
 .error {
-  border-left-color: #e47c6f;
-  background: color-mix(in srgb, #e47c6f 13%, transparent);
+  border-left-color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 13%, transparent);
 }
 
 .footerLink {

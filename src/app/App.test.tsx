@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 import { App } from './App'
 import { AuthProvider } from './providers/AuthProvider'
+import { ThemeProvider } from '../themes/ThemeProvider'
 
 vi.mock('../lib/supabase/client', () => ({
   isSupabaseConfigured: false,
@@ -13,9 +14,11 @@ describe('App foundation', () => {
   it('renders the public landing shell with an auth entry point', () => {
     render(
       <MemoryRouter>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </ThemeProvider>
       </MemoryRouter>,
     )
 

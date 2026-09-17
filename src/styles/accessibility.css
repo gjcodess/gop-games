@@ -7,8 +7,16 @@
   padding: 0.7rem 0.9rem;
   border-radius: 0.5rem;
   background: var(--color-accent);
-  color: #101416;
+  color: var(--color-accent-contrast);
   font-weight: 800;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
 }
 
 .skip-link:focus {

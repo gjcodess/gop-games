@@ -1,141 +1,186 @@
 .page {
   min-height: 100vh;
-  background: var(--color-canvas);
+  background: var(--theme-canvas-wash), var(--color-canvas);
+  color: var(--color-ink);
 }
 
 .header,
 .main {
-  width: min(100% - 2.5rem, 72rem);
   margin: 0 auto;
+  width: min(100% - 1.25rem, 72rem);
 }
 
 .header {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 1.25rem 0;
   border-bottom: 1px solid var(--color-line);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.headerActions {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
 }
 
 .brand {
-  margin: 0;
-  color: var(--color-accent);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
+  color: var(--color-ink);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.signOut {
+.brandMark { color: var(--color-accent); }
+
+.signOut,
+.saveButton {
+  align-items: center;
   border: 1px solid var(--color-line-strong);
   border-radius: 999px;
-  padding: 0.6rem 0.8rem;
-  background: transparent;
-  color: var(--color-ink);
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 700;
   cursor: pointer;
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 800;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.65rem 0.95rem;
   text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.signOut {
+  background: var(--color-control);
+  color: var(--color-ink);
+}
+
+.signOut:hover,
+.saveButton:hover {
+  background: var(--color-control-hover);
+  border-color: var(--color-accent);
+  transform: translateY(-0.08rem);
 }
 
 .main {
   display: grid;
-  gap: 1rem;
-  padding: 3rem 0;
-}
-
-.hero,
-.profilePanel {
-  border: 1px solid var(--color-line);
-  background: var(--color-panel);
-  box-shadow: var(--shadow-lifted);
+  gap: clamp(1rem, 3vw, 1.8rem);
+  padding: clamp(1.75rem, 6vw, 5rem) 0 4rem;
 }
 
 .hero {
-  padding: clamp(1.5rem, 6vw, 3.5rem);
+  border-bottom: 1px solid var(--color-line-strong);
+  padding-bottom: clamp(1.5rem, 5vw, 3rem);
 }
 
 .eyebrow {
-  margin: 0;
   color: var(--color-accent);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.7rem;
+  font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .hero h1 {
-  max-width: 12ch;
-  margin: 0.65rem 0 1rem;
-  font-size: clamp(2.6rem, 10vw, 5.5rem);
-  line-height: 0.93;
-  letter-spacing: -0.06em;
+  font-size: clamp(3rem, 12vw, 7rem);
+  letter-spacing: -0.08em;
+  line-height: 0.85;
+  margin-top: 0.9rem;
+  max-width: 8ch;
 }
 
-.hero p:last-child,
-.profilePanel p {
-  margin: 0;
+.hero p:last-child {
   color: var(--color-muted);
-  line-height: 1.6;
+  margin-top: 1.25rem;
+  max-width: 38rem;
 }
 
-.profilePanel {
+.controlRow {
+  align-items: end;
   display: grid;
   gap: 1rem;
-  padding: 1.25rem;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.7fr);
 }
 
-.profilePanel h2 {
-  margin: 0;
-  font-size: 1.25rem;
+.profilePanel,
+.atmospherePanel {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-soft);
+  padding: clamp(1.25rem, 4vw, 2rem);
 }
+
+.profilePanel h2,
+.atmospherePanel h2 {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  line-height: 1;
+}
+
+.profilePanel > div > p,
+.atmospherePanel > p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin-top: 0.45rem;
+}
+
+.themeSelector { margin-top: 1.25rem; }
 
 .profileForm {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: end;
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .profileForm label {
-  display: grid;
-  flex: 1 1 14rem;
-  gap: 0.35rem;
   color: var(--color-ink);
-  font-size: 0.85rem;
-  font-weight: 700;
+  display: grid;
+  font-size: 0.82rem;
+  font-weight: 800;
+  gap: 0.4rem;
 }
 
 .profileForm input {
+  background: var(--color-control);
   border: 1px solid var(--color-line-strong);
-  border-radius: 0.65rem;
-  padding: 0.75rem;
-  background: var(--color-canvas);
+  border-radius: var(--radius-control);
   color: var(--color-ink);
-  font: inherit;
+  min-height: 2.85rem;
+  padding: 0.65rem 0.8rem;
 }
 
-.profileForm button {
-  min-height: 2.7rem;
-  border: 1px solid var(--color-accent);
-  border-radius: 0.65rem;
-  padding: 0.7rem 0.9rem;
+.saveButton {
   background: var(--color-accent);
-  color: #151719;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
+  border-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+  justify-self: start;
 }
 
-.profileForm button:disabled {
-  cursor: not-allowed;
-  opacity: 0.55;
-}
+.saveButton:hover { color: var(--color-accent-contrast); }
 
 .message {
-  margin: 0;
-  color: var(--color-accent) !important;
-  font-size: 0.9rem;
+  border-left: 0.22rem solid var(--color-success);
+  color: var(--color-ink);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  padding: 0.55rem 0.75rem;
+}
+
+.footerLink {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  justify-self: start;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 40rem) {
+  .header { align-items: flex-start; }
+  .controlRow { grid-template-columns: 1fr; }
+  .headerActions { gap: 0.35rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signOut,
+  .saveButton { transition: none; }
 }

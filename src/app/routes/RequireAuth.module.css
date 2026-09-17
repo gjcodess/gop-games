@@ -1,0 +1,17 @@
+.loading {
+  align-content: center;
+  display: grid;
+  gap: 0.8rem;
+  justify-items: start;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+.title {
+  height: clamp(2.5rem, 10vw, 4.5rem);
+}
+
+.status {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}

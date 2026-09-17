@@ -1,0 +1,26 @@
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.label {
+  color: var(--color-ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.select {
+  appearance: auto;
+  background: var(--color-control);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 0.7rem;
+  color: var(--color-ink);
+  cursor: pointer;
+  min-height: 2.85rem;
+  padding: 0.65rem 2.25rem 0.65rem 0.8rem;
+}
+
+.description {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+}

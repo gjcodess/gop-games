@@ -1,11 +1,19 @@
 body {
   min-width: 320px;
   min-height: 100vh;
-  background: var(--color-canvas);
+  background: var(--theme-canvas-wash), var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-body);
   line-height: 1.5;
   text-rendering: optimizeLegibility;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
 }
 
 h1,

@@ -1,0 +1,99 @@
+/* Game themes only set semantic tokens. Components never need to know a game's palette. */
+:root[data-game-theme='uno-no-mercy'] {
+  --color-accent: #e62f46;
+  --color-accent-strong: #ff5362;
+  --color-accent-contrast: #fff9f9;
+  --theme-canvas-wash: radial-gradient(circle at 85% 0%, rgb(230 47 70 / 0.2), transparent 36%);
+  --font-display: Impact, 'Arial Narrow', sans-serif;
+  --shadow-lifted: 0 1.5rem 4rem rgb(105 10 20 / 0.22);
+}
+
+:root[data-theme-mode='dark'][data-game-theme='uno-no-mercy'] {
+  --color-canvas: #170f12;
+  --color-panel: #251519;
+  --color-panel-raised: #351b21;
+  --color-control: rgb(53 27 33 / 0.9);
+  --color-control-hover: #48212a;
+  --color-line: rgb(255 181 188 / 0.16);
+  --color-line-strong: rgb(255 181 188 / 0.3);
+  --theme-canvas-wash: radial-gradient(circle at 85% 0%, rgb(230 47 70 / 0.24), transparent 36%);
+}
+
+:root[data-game-theme='taco-cat-goat-cheese-pizza'] {
+  --color-accent: #d36c8c;
+  --color-accent-strong: #ae4a6d;
+  --color-accent-contrast: #fff8fb;
+  --theme-canvas-wash: radial-gradient(circle at 82% 0%, rgb(244 180 201 / 0.25), transparent 38%);
+  --font-display: 'Trebuchet MS', ui-rounded, sans-serif;
+  --radius-panel: 1.8rem;
+}
+
+:root[data-theme-mode='dark'][data-game-theme='taco-cat-goat-cheese-pizza'] {
+  --color-canvas: #1c1720;
+  --color-panel: #29202c;
+  --color-panel-raised: #382a3c;
+  --color-control: rgb(56 42 60 / 0.9);
+  --color-control-hover: #49364d;
+  --color-line: rgb(255 214 228 / 0.18);
+  --color-line-strong: rgb(255 214 228 / 0.3);
+}
+
+:root[data-game-theme='flip7'] {
+  --color-accent: #9d6619;
+  --color-accent-strong: #77470a;
+  --color-accent-contrast: #fff8e5;
+  --theme-canvas-wash: radial-gradient(circle at 76% 0%, rgb(218 171 67 / 0.28), transparent 40%);
+  --font-display: Georgia, 'Times New Roman', serif;
+  --radius-panel: 1rem;
+}
+
+:root[data-theme-mode='dark'][data-game-theme='flip7'] {
+  --color-canvas: #0e1c1a;
+  --color-panel: #142c28;
+  --color-panel-raised: #1b3c34;
+  --color-control: rgb(27 60 52 / 0.9);
+  --color-control-hover: #245047;
+  --color-accent: #e8bf5b;
+  --color-accent-strong: #f5d57f;
+  --color-line: rgb(221 237 192 / 0.18);
+  --color-line-strong: rgb(221 237 192 / 0.32);
+}
+
+:root[data-game-theme='billiards'] {
+  --color-accent: #1f7658;
+  --color-accent-strong: #13523d;
+  --color-accent-contrast: #f4fbf1;
+  --theme-canvas-wash: radial-gradient(circle at 12% 0%, rgb(71 157 111 / 0.2), transparent 38%);
+  --font-display: 'Arial Narrow', 'Aptos Display', sans-serif;
+}
+
+:root[data-theme-mode='dark'][data-game-theme='billiards'] {
+  --color-canvas: #0d1917;
+  --color-panel: #122622;
+  --color-panel-raised: #1a3630;
+  --color-control: rgb(26 54 48 / 0.9);
+  --color-control-hover: #22483e;
+  --color-accent: #72ce9e;
+  --color-accent-strong: #a2e3ba;
+  --color-line: rgb(190 239 205 / 0.17);
+  --color-line-strong: rgb(190 239 205 / 0.3);
+}
+
+:root[data-game-theme='moose-master'] {
+  --color-accent: #5d7bca;
+  --color-accent-strong: #415aa4;
+  --color-accent-contrast: #f8faff;
+  --theme-canvas-wash: radial-gradient(circle at 86% 0%, rgb(101 134 214 / 0.2), transparent 38%);
+}
+
+:root[data-theme-mode='dark'][data-game-theme='moose-master'] {
+  --color-canvas: #111625;
+  --color-panel: #192138;
+  --color-panel-raised: #242f4c;
+  --color-control: rgb(36 47 76 / 0.9);
+  --color-control-hover: #304064;
+  --color-accent: #8da9ff;
+  --color-accent-strong: #b8c8ff;
+  --color-line: rgb(214 224 255 / 0.18);
+  --color-line-strong: rgb(214 224 255 / 0.3);
+}

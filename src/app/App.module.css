@@ -1,134 +1,165 @@
 .appShell {
   min-height: 100vh;
-  background: var(--color-canvas);
+  background: var(--theme-canvas-wash), var(--color-canvas);
   color: var(--color-ink);
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  max-width: 72rem;
+.header,
+.main {
   margin: 0 auto;
-  padding: 1.25rem 1.25rem 0;
+  width: min(100% - 2rem, 72rem);
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 1.25rem 0;
+}
+
+.headerActions {
+  align-items: center;
+  display: flex;
+  gap: 0.55rem;
 }
 
 .eyebrow,
 .kicker,
 .sectionLabel {
-  margin: 0;
   color: var(--color-accent);
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.7rem;
+  font-weight: 900;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.phaseBadge {
-  border: 1px solid var(--color-line-strong);
-  border-radius: 999px;
-  padding: 0.45rem 0.7rem;
+.eyebrow span {
   color: var(--color-muted);
-  font-size: 0.72rem;
-  font-weight: 700;
+  margin: 0 0.25rem;
+}
+
+.phaseBadge {
+  align-items: center;
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  color: var(--color-accent-contrast);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 900;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  text-decoration: none;
+  transition: filter 160ms ease, transform 160ms ease;
+}
+
+.phaseBadge:hover {
+  filter: brightness(1.08);
+  transform: translateY(-0.08rem);
 }
 
 .main {
   display: grid;
-  gap: 1rem;
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 4.5rem 1.25rem 3rem;
+  gap: clamp(1.25rem, 4vw, 2.4rem);
+  padding: clamp(2rem, 9vw, 7rem) 0 4rem;
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2rem;
   align-items: end;
-  padding: clamp(1.5rem, 5vw, 4rem);
+  background: var(--color-panel);
   border: 1px solid var(--color-line);
-  border-radius: 1.5rem;
-  background: linear-gradient(135deg, var(--color-panel), var(--color-panel-raised));
+  border-radius: var(--radius-panel);
   box-shadow: var(--shadow-lifted);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  overflow: hidden;
+  padding: clamp(1.5rem, 6vw, 4rem);
+  position: relative;
 }
 
+.hero::after {
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  content: '';
+  height: 20rem;
+  pointer-events: none;
+  position: absolute;
+  right: -8rem;
+  top: -12rem;
+  width: 20rem;
+}
+
+.kicker { margin-bottom: 1rem; }
+
 .hero h1 {
-  max-width: 11ch;
-  margin: 0.6rem 0 1rem;
-  font-size: clamp(2.5rem, 10vw, 6.5rem);
-  line-height: 0.92;
-  letter-spacing: -0.06em;
+  font-size: clamp(3rem, 12vw, 7.8rem);
+  letter-spacing: -0.08em;
+  line-height: 0.86;
+  max-width: 9ch;
+  position: relative;
+  z-index: 1;
 }
 
 .description {
-  max-width: 42rem;
-  margin: 0;
   color: var(--color-muted);
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  line-height: 1.65;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  margin-top: 1.5rem;
+  max-width: 38rem;
 }
 
 .signal {
-  display: flex;
   align-items: end;
+  display: flex;
   gap: 0.35rem;
-  height: 5rem;
-  padding: 0.75rem;
-  border: 1px solid var(--color-line-strong);
-  border-radius: 1rem;
-  background: var(--color-canvas);
+  height: 6rem;
+  justify-content: end;
+  position: relative;
+  z-index: 1;
 }
 
 .signal span {
-  display: block;
-  width: 0.65rem;
-  border-radius: 999px 999px 0.25rem 0.25rem;
   background: var(--color-accent);
+  border-radius: 999px;
+  display: block;
+  height: 35%;
+  width: 0.5rem;
 }
 
-.signal span:nth-child(1) { height: 35%; opacity: 0.45; }
-.signal span:nth-child(2) { height: 65%; opacity: 0.7; }
+.signal span:nth-child(2) { height: 65%; }
 .signal span:nth-child(3) { height: 100%; }
 
 .statusPanel {
+  align-items: start;
+  border-top: 1px solid var(--color-line-strong);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-  gap: 1rem;
-  align-items: center;
-  padding: 1.35rem 1.5rem;
-  border-left: 0.3rem solid var(--color-accent);
-  background: var(--color-panel);
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.7fr);
+  padding: 1.5rem 0;
 }
 
 .statusPanel h2 {
-  margin: 0.45rem 0 0;
-  font-size: clamp(1.15rem, 3vw, 1.7rem);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  line-height: 1;
+  margin-top: 0.5rem;
 }
 
 .statusPanel > p {
-  margin: 0;
   color: var(--color-muted);
-  line-height: 1.6;
+  max-width: 28rem;
 }
 
 @media (max-width: 42rem) {
-  .header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .main {
-    padding-top: 3rem;
-  }
-
+  .header,
+  .main { width: min(100% - 1.25rem, 72rem); }
+  .header { align-items: flex-start; }
+  .headerActions { gap: 0.35rem; }
   .hero,
-  .statusPanel {
-    grid-template-columns: 1fr;
-  }
+  .statusPanel { grid-template-columns: 1fr; }
+  .signal { justify-content: start; }
+}
 
-  .signal {
-    width: max-content;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .phaseBadge { transition: none; }
 }
