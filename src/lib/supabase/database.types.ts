@@ -1332,7 +1332,16 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_match: {
+        Args: {
+          p_game_id: string
+          p_group_id: string
+          p_notes?: string
+          p_participant_profile_ids: string[]
+          p_variant_id: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
